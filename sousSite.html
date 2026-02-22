@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mellali Group | Réservation</title>
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/x-icon" href="MM.ico">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f2f39, #174759);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* CARD */
+        .card {
+            background: white;
+            color: #174759;
+            border-radius: 20px;
+            width: 360px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+            text-align: center;
+        }
+
+        /* LOGO */
+        .logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #8bbab4;
+            margin-bottom: 15px;
+        }
+
+        /* TITRE */
+        h2 {
+            margin: 10px 0 25px 0;
+        }
+
+        /* SERVICES */
+        .service {
+            background: linear-gradient(135deg, #8bbab4, #174759);
+            color: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+
+        .service:hover {
+            transform: scale(1.05);
+        }
+
+        /* BACK BUTTON */
+        .back {
+            margin-top: 15px;
+            background: #8bbab4;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            border: none;
+        }
+
+        .back:hover {
+            background: #6fa6a0;
+        }
+
+        /* BUTTON */
+        button {
+            background: #174759;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background: #0f2f39;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+
+        <!-- LOGO -->
+        <img src="C:\Users\HP\OneDrive\Mon site\MM.ico" class="logo">
+
+        <h2>MELLALI GROUP</h2>
+
+        <!-- STEP 1 SERVICES -->
+        <div id="step1">
+
+            <div class="service" onclick="selectService('Canapé',250)">
+                🛋️ Nettoyage Canapé — 250 DH
+            </div>
+
+            <div class="service" onclick="selectService('Matelas',200)">
+                🛏️ Nettoyage Matelas — 200 DH
+            </div>
+
+            <div class="service" onclick="selectService('Voiture',300)">
+                🚗 Nettoyage Voiture — 300 DH
+            </div>
+
+        </div>
+
+        <!-- STEP 2 DATE -->
+        <div id="step2" class="hidden">
+
+            <h3 id="serviceTitle"></h3>
+
+            <input type="date" id="date">
+
+            <select id="time">
+                <option>10:00</option>
+                <option>12:00</option>
+                <option>14:00</option>
+                <option>16:00</option>
+            </select>
+
+            <button onclick="nextStep()">Continuer</button>
+            <br>
+            <button class="back" onclick="back(1)">⬅ Retour</button>
+
+        </div>
+
+        <!-- STEP 3 FORM -->
+        <div id="step3" class="hidden">
+
+            <input type="text" id="name" placeholder="Nom complet">
+            <input type="tel" id="phone" placeholder="Téléphone">
+            <input type="email" id="email" placeholder="Email">
+
+            <select id="payment">
+                <option>Paiement sur place</option>
+                <option>Carte bancaire (bientôt)</option>
+            </select>
+
+            <button onclick="confirmBooking()">Confirmer</button>
+            <br>
+            <button class="back" onclick="back(2)">⬅ Retour</button>
+
+        </div>
+
+        <!-- STEP 4 CONFIRM -->
+        <div id="step4" class="hidden">
+
+            <h3>✅ Réservation confirmée</h3>
+            <p id="summary"></p>
+
+        </div>
+
+    </div>
+
+    <script>
+
+        let serviceName = "";
+        let servicePrice = 0;
+
+        function selectService(name, price) {
+            serviceName = name;
+            servicePrice = price;
+
+            document.getElementById("step1").classList.add("hidden");
+            document.getElementById("step2").classList.remove("hidden");
+
+            document.getElementById("serviceTitle").innerHTML =
+                name + " — " + price + " DH";
+        }
+
+        function nextStep() {
+            document.getElementById("step2").classList.add("hidden");
+            document.getElementById("step3").classList.remove("hidden");
+        }
+
+        function back(step) {
+
+            document.getElementById("step1").classList.add("hidden");
+            document.getElementById("step2").classList.add("hidden");
+            document.getElementById("step3").classList.add("hidden");
+
+            document.getElementById("step" + step).classList.remove("hidden");
+        }
+
+        function confirmBooking() {
+
+            let name = document.getElementById("name").value;
+            let phone = document.getElementById("phone").value;
+            let email = document.getElementById("email").value;
+            let date = document.getElementById("date").value;
+            let time = document.getElementById("time").value;
+
+            document.getElementById("step3").classList.add("hidden");
+            document.getElementById("step4").classList.remove("hidden");
+
+            document.getElementById("summary").innerHTML =
+                serviceName + "<br>" + date + " à " + time + "<br>" + servicePrice + " DH";
+
+            /* WhatsApp */
+            let message = `Nouvelle réservation Mellali Group
+Service: ${serviceName}
+Date: ${date} ${time}
+Client: ${name}
+Téléphone: ${phone}`;
+
+            window.open(`https://wa.me/212687724430?text=${encodeURIComponent(message)}`);
+
+            console.log("Email envoyé à " + email);
+        }
+
+    </script>
+
+</body>
+
+</html>
