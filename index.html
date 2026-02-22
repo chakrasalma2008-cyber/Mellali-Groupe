@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mellali Group</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="MM.ico">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px;
+            animation: fadeIn 1.2s ease;
+        }
+
+        /* LOGO */
+
+        .logo {
+            width: 170px;
+            height: 170px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: white;
+            padding: 12px;
+            box-shadow: 0 0 35px rgba(0, 255, 200, 0.25);
+            margin-bottom: 25px;
+            animation: logoGlow 3s infinite alternate;
+        }
+
+        /* TEXT */
+
+        h1 {
+            font-size: 52px;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        p {
+            opacity: 0.85;
+            margin-bottom: 40px;
+            font-size: 18px;
+        }
+
+        /* BUTTONS */
+
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .btn {
+            position: relative;
+            padding: 15px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            overflow: hidden;
+            transition: 0.4s;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn span {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* COLORS */
+
+        .glass {
+            background: linear-gradient(135deg, #0ea5a4, #22c55e);
+        }
+
+        .call {
+            background: linear-gradient(135deg, #2563eb, #60a5fa);
+        }
+
+        .whatsapp {
+            background: linear-gradient(135deg, #16a34a, #4ade80);
+        }
+
+        .email {
+            background: linear-gradient(135deg, #9333ea, #c084fc);
+        }
+
+        /* Hover animation */
+
+        .btn::before {
+            content: "";
+            position: absolute;
+            width: 300%;
+            height: 300%;
+            background: rgba(255, 255, 255, 0.2);
+            top: -100%;
+            left: -100%;
+            transform: rotate(45deg);
+            transition: 0.6s;
+        }
+
+        .btn:hover::before {
+            top: 100%;
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ANIMATIONS */
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes logoGlow {
+            from {
+                box-shadow: 0 0 20px rgba(0, 255, 200, 0.2);
+            }
+
+            to {
+                box-shadow: 0 0 45px rgba(0, 255, 200, 0.55);
+            }
+        }
+
+        /* MOBILE */
+
+        @media(max-width:600px) {
+            h1 {
+                font-size: 36px;
+            }
+
+            .logo {
+                width: 140px;
+                height: 140px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <section class="hero">
+
+        <img src="MM.png" class="logo" alt="Logo Mellali Group">
+
+        <h1>MELLALI GROUP</h1>
+        <p>Nettoyage professionnel à domicile</p>
+
+        <div class="action-buttons">
+
+            <a href="sousSite.html" class="btn glass">
+                <span>📅 Réservation</span>
+            </a>
+
+            <a href="tel:+212603590545" class="btn call">
+                <span>📞 Appel</span>
+            </a>
+
+            <a href="https://wa.me/212687724430" class="btn whatsapp">
+                <span>💬 WhatsApp</span>
+            </a>
+
+            <a href="mailto:mellaligroup@gmail.com" class="btn email">
+                <span>✉️ Email</span>
+            </a>
+
+        </div>
+
+    </section>
+
+</body>
+
+</html>
